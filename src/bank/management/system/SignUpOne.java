@@ -20,7 +20,9 @@ public class SignUpOne extends JFrame implements ActionListener {
     JRadioButton male,female,married,unmarried,other;
     JDateChooser dateChooser;
     JButton next;
+    
     SignUpOne(){
+        
         int fontsize=15;//text field font size
         Random random=new Random();
         applNumber=random.nextInt(1000,9999);
@@ -153,7 +155,7 @@ public class SignUpOne extends JFrame implements ActionListener {
         setLayout(null);//deactivates the default layouts
         setSize(850,820);
         setLocation(320,5);
-        setTitle("Application Form");
+        setTitle("APPLICATION FORM-Page 1");
         setVisible(true);
         getContentPane().setBackground(Color.WHITE);//turns the background of the JFrame white
         
@@ -211,8 +213,6 @@ try{
              JOptionPane.showMessageDialog(null,"Marry is required");
          else if(address.equals(""))
              JOptionPane.showMessageDialog(null,"address is required");
-         else if(city.equals(""))
-             JOptionPane.showMessageDialog(null,"City is required");
          else if(pin.equals(""))
              JOptionPane.showMessageDialog(null,"Pin  is required");
          else if(state.equals(""))
@@ -224,6 +224,8 @@ try{
              String query="insert into signup values (' "+formno+"',' "+name+" ',' "+fname+" ',' "+mname+" ',' "+dob+" ',' "+gender+" ',' "+email+" ' ,' "+marry+" ' ,' "+address+" ', ' "+city+" ',' "+pin+" ',' "+state+" ')";
              //executing the query
              c.s.executeUpdate(query);
+             setVisible(false);
+             new SignUpTwo(formno);
          }
 }
          catch(Exception e)
