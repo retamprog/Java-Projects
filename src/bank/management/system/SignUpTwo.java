@@ -200,6 +200,9 @@ try{
              String query="insert into signuptwo values (' "+formno+"',' "+religion+" ',' "+category+" ',' "+income+" ',' "+education+" ',' "+occupation+" ',' "+pan+" ' ,' "+aadhar+" ' ,' "+senior+" ', ' "+existingAcc+" ')";
              //executing the query
              c.s.executeUpdate(query);
+             setVisible(false);
+             new SignUpThree(formno);
+             
          }
 }
          catch(Exception e)
