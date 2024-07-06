@@ -202,7 +202,7 @@ public class SignUpThree extends JFrame implements ActionListener   {
                
           }
           else if(ae.getSource()==cancel){
-                         
+                         System.exit(0);
               
           }
           
