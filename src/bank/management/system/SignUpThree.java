@@ -55,10 +55,6 @@ public class SignUpThree extends JFrame implements ActionListener   {
           accType.add(FDAcc);
           accType.add(RDAcc);
           accType.add(currentAcc);
-          
-          
-          
-          
           JLabel cardNumber=new JLabel("Card  Number");
           cardNumber.setFont(new Font("Raleway",Font.BOLD,18));
           cardNumber.setBounds(90,270,200,30);
@@ -138,18 +134,7 @@ public class SignUpThree extends JFrame implements ActionListener   {
           submit.setForeground(Color.white);
           submit.setBounds(340,650,150,30);
           submit.addActionListener(this);
-          
           add(submit);
-          
-                  
-          
-          
-          
-          
-          
-          
-          
-          
           
           setLayout(null);
           setVisible(true);
@@ -161,8 +146,66 @@ public class SignUpThree extends JFrame implements ActionListener   {
           setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
           
       }
+      @Override
       public void actionPerformed(ActionEvent ae){
           //now we have to pick up the action based on the button clicked.
+          if(ae.getSource()==submit){
+               String accountype=null;
+               if(savingAcc.isSelected())
+                    accountype="Savings Account";
+               else if(FDAcc.isSelected())
+                    accountype="Fixed Deposit Account";
+               else if(currentAcc.isSelected())
+                    accountype="Current Account";
+               else if(RDAcc.isSelected())
+                    accountype="Recurring Deposit Account";
+               Random random=new Random();
+               String cardnumber=(Math.abs(random.nextLong()%900000000000L)+5040000000000000L)+"";
+               String pinnumber=""+random.nextInt(1000,9999);
+               String services="";
+               if(atmcard.isSelected())
+                   services=services+" ATM Card";
+                if(mobbank.isSelected())
+                   services=services+" Mobile Banking";
+                if(intbank.isSelected())
+                   services=services+" Internet Banking";
+                if(emailsms.isSelected())
+                   services=services+" Email and SMS";
+               if(chequebook.isSelected())
+                   services=services+" Cheque Book";
+                if(estat.isSelected())
+                   services=services+" E-Statement";
+               
+               if(accountype=="")
+                     JOptionPane.showMessageDialog(null,"Account Type info is required");
+               else if(services=="")
+                   JOptionPane.showMessageDialog(null,"You need to the mention the services you require");
+               else if(!finalcheck.isSelected())
+                   JOptionPane.showMessageDialog(null,"You need to check and verify your details ");
+               else{
+                   try{
+                    Conn c=new Conn();
+                   String query1="insert into signupthree values (' "+formno+"',' "+accountype+" ',' "+cardnumber+" ',' "+pinnumber+"  ',' "+services+" ')";
+                   String query2="insert into login values (' "+formno+"',' "+cardnumber+" ',' "+pinnumber+"  ')";
+                   c.s.executeUpdate(query1);
+                   c.s.executeUpdate(query2);
+                   setVisible(false);
+                   JOptionPane.showMessageDialog(null, "<html>Card Number: "+cardnumber+"<br>Pin: "+pinnumber+"</html>");
+                  
+                   
+               }
+                   catch(Exception e  ){
+                       System.out.println(e);
+               }
+               }            
+               
+               
+          }
+          else if(ae.getSource()==cancel){
+                         
+              
+          }
+          
           
       }
     public static void main(String[] args) {
