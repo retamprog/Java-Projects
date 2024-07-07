@@ -196,6 +196,7 @@ public class SignUpThree extends JFrame implements ActionListener   {
                }
                    catch(Exception e  ){
                        System.out.println(e);
+                       
                }
                }            
                
@@ -213,4 +214,3 @@ public class SignUpThree extends JFrame implements ActionListener   {
     }
     
 }
-;
