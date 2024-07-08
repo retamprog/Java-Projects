@@ -8,16 +8,18 @@ package bank.management.system;
  * options)-> Deposit, Cash Withdrawal,Fast Cash,Mini Statement,Pin Change,Balance Enquiry,
  * Exit
  */
-import java.util.*;
+//import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 //import com.jtattoo.plaf.aluminium.AluminiumButtonUI;
 
 public class Transactions extends JFrame implements ActionListener  {
+        String pinnumber;
         JButton deposit,fastcash,pinchange,cashwithdraw,ministat,balance,exit;
     
-       Transactions(){
+       Transactions(String pinnumber){
+           this.pinnumber=pinnumber;
            
            //using the ImageIcon class to add images from the system to our JFrame
            ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("icons/atm.jpg"));
@@ -127,7 +129,7 @@ public class Transactions extends JFrame implements ActionListener  {
         try {
             //here you can put the selected theme class name in JTattoo
             UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
-            new Transactions();
+            new Transactions("");
  
         } catch (Exception ex) {
             System.out.println(ex);

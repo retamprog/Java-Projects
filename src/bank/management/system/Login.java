@@ -11,6 +11,7 @@ public class Login extends JFrame implements ActionListener {
     JButton signin,clear,signup;
     JTextField cardTextField;
     JPasswordField pinTextField;
+//    String pinumber;
     Login() {
         // this Jframe has many default layouts.
         //meaning the way the components are going to be arranged in the JFrame.
@@ -121,7 +122,7 @@ public class Login extends JFrame implements ActionListener {
                   //which means the query has returned some data
              setVisible(false);
              UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
-            new Transactions();
+            new Transactions(pinnumber);
             }else{
                 JOptionPane.showMessageDialog(null,"Incorrect Card number or Pin number");    
             }
