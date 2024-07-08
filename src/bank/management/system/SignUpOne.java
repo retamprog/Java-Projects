@@ -223,7 +223,7 @@ try{
              //creating the query
              String query="insert into signup values (' "+formno+"',' "+name+" ',' "+fname+" ',' "+mname+" ',' "+dob+" ',' "+gender+" ',' "+email+" ' ,' "+marry+" ' ,' "+address+" ', ' "+city+" ',' "+pin+" ',' "+state+" ')";
              //executing the query
-             c.s.executeUpdate(query);
+             c.createStatement().executeUpdate(query);
              setVisible(false);
              new SignUpTwo(formno);
          }

@@ -8,6 +8,8 @@ package bank.management.system;
  * going to be.
  * 
  */
+import java.sql.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -160,8 +162,8 @@ public class SignUpThree extends JFrame implements ActionListener   {
                else if(RDAcc.isSelected())
                     accountype="Recurring Deposit Account";
                Random random=new Random();
-               String cardnumber=(Math.abs(random.nextLong()%900000000000L)+5040000000000000L)+"";
-               String pinnumber=""+random.nextInt(1000,9999);
+               String cardnumber=Long.toString(Math.abs(random.nextLong()%900000000000L)+5040000000000000L);
+               String pinnumber=Integer.toString(random.nextInt(1000,9999));
                String services="";
                if(atmcard.isSelected())
                    services=services+" ATM Card";
@@ -185,10 +187,20 @@ public class SignUpThree extends JFrame implements ActionListener   {
                else{
                    try{
                     Conn c=new Conn();
-                   String query1="insert into signupthree values (' "+formno+"',' "+accountype+" ',' "+cardnumber+" ',' "+pinnumber+"  ',' "+services+" ')";
-                   String query2="insert into login values (' "+formno+"',' "+cardnumber+" ',' "+pinnumber+"  ')";
-                   c.s.executeUpdate(query1);
+//                   String query1="insert into signupthree values (' "+formno+"',' "+accountype+" ',' "+cardnumber+" ',' "+pinnumber+"  ',' "+services+" ')";
+                   PreparedStatement st =c.prepareStatement("insert into signupthree values(?,?,?,?,?)");
+                   st.setString(1,formno);
+                   st.setString(2,accountype);
+                   st.setString(3,cardnumber);
+                   st.setString(4,pinnumber);
+                   st.setString(5,services);
+                   st.executeUpdate();
+                           
+                   
+                   String query2="insert into login values (' "+formno+"','"+cardnumber+"','"+pinnumber+"')";
+//                   c.s.executeUpdate(query1);
                    c.s.executeUpdate(query2);
+                   c.close();
                    setVisible(false);
                    JOptionPane.showMessageDialog(null, "<html>Card Number: "+cardnumber+"<br>Pin: "+pinnumber+"</html>");
                   

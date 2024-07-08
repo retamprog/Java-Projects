@@ -1,8 +1,9 @@
 package bank.management.system;
 
-import javax.swing.*;
+import javax.swing.*; 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 /*
  now we will also impplement the ActionListener interface to add some action to our JFrame
 */
@@ -22,6 +23,7 @@ public class Login extends JFrame implements ActionListener {
         // this function along with length and breadth parameters creates the login frame
         setSize(800, 480);
         // by default the frame visibility is hidden
+//        setUndecorated(true); by doing this it doesnt show the header bar of the JFrame
         setVisible(true);
         // by default the JFrame opens at the top left corner (0,0)
         // we can use the setLocation function to change the opening location according to the x, y coordinates given in the function.
@@ -103,8 +105,33 @@ public class Login extends JFrame implements ActionListener {
             
         }
         else if(e.getSource()==signin){
-            setVisible(false);
+             
+            String cardnumber=cardTextField.getText();
+            String pinnumber=pinTextField.getText();
+//            System.out.println(pinnumber);
+          try{
+              Conn conn=new Conn();
+            //now we will write a DDL command where we will extract data from the database
+           String query = "SELECT * FROM login WHERE cardnumber = ? AND pin = ?";
+                PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setString(1, cardnumber);
+                stmt.setString(2, pinnumber);
+                ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                  //which means the query has returned some data
+             setVisible(false);
+             UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
             new Transactions();
+            }else{
+                JOptionPane.showMessageDialog(null,"Incorrect Card number or Pin number");    
+            }
+            }
+            catch(Exception ex){
+                System.out.println(ex);
+            }
+            
+              
+        
             
         }
         else if(e.getSource()==signup){
