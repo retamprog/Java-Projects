@@ -98,7 +98,7 @@ public class Transactions extends JFrame implements ActionListener  {
            // now here will add the java buttons functionalities
            if(ae.getSource()==deposit)
            {
-             
+             setVisible(false);
           try {
             //here you can put the selected theme class name in JTattoo
             UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
@@ -121,6 +121,7 @@ public class Transactions extends JFrame implements ActionListener  {
                
            }
             else if(ae.getSource()==balance){
+                setVisible(false);
             try {
             //here you can put the selected theme class name in JTattoo
             UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
@@ -131,6 +132,7 @@ public class Transactions extends JFrame implements ActionListener  {
                
            }
             else if(ae.getSource()==fastcash){
+                setVisible(false);
                 try{
                  UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
                  new FastCash(pinnumber);
@@ -144,6 +146,15 @@ public class Transactions extends JFrame implements ActionListener  {
                
            }
             else if(ae.getSource()==pinchange){
+                setVisible(false);
+                try{
+                 UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+                 new PinChange(pinnumber);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                }
                
            }
             else if(ae.getSource()==exit){
