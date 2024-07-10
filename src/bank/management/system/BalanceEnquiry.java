@@ -26,10 +26,10 @@ public class BalanceEnquiry extends JFrame implements ActionListener {
            //JLabel please select your transaction 
            Balance amt=new Balance(pinnumber);
            int balance=amt.getBalance();        
-           JLabel label=new JLabel("Your Current Account Balance "+balance);
-           label.setFont(new Font("Raleway",Font.BOLD,18));
+           JLabel label=new JLabel("Your Current Account Balance is Rs "+balance);
+           label.setFont(new Font("Raleway",Font.BOLD,16));
            label.setForeground(Color.white);
-           label.setBounds(170,300,300,20);
+           label.setBounds(170,300,350,20);
            background. add(label);
           //
           Back=new JButton("Back");
