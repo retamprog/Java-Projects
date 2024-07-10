@@ -203,6 +203,9 @@ public class SignUpThree extends JFrame implements ActionListener   {
                    c.close();
                    setVisible(false);
                    JOptionPane.showMessageDialog(null, "<html>Card Number: "+cardnumber+"<br>Pin: "+pinnumber+"</html>");
+//                   new Deposit(pinnumber);
+                  UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+                  new Deposit(pinnumber); 
                   
                    
                }

@@ -98,9 +98,27 @@ public class Transactions extends JFrame implements ActionListener  {
            // now here will add the java buttons functionalities
            if(ae.getSource()==deposit)
            {
-               
+             
+          try {
+            //here you can put the selected theme class name in JTattoo
+            UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+            new Deposit(pinnumber);
+ 
+        } catch (Exception ex) {
+            System.out.println(ex);
+            
+        }   
            }
            else if(ae.getSource()==cashwithdraw){
+               try {
+            //here you can put the selected theme class name in JTattoo
+            UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+            new Withdrawal(pinnumber);
+ 
+        } catch (Exception ex) {
+            System.out.println(ex);
+            
+        } 
                
            }
             else if(ae.getSource()==balance){

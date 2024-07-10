@@ -10,6 +10,8 @@ package bank.management.system;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
+
 
 public class Deposit extends JFrame implements ActionListener {
      JTextField amount;
@@ -58,11 +60,42 @@ public class Deposit extends JFrame implements ActionListener {
      
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource()==deposit){
+            String deposit=amount.getText();
+            Date date =new Date();
+            String Sdate=date.toString();
+//            int amount=0;
+//            amount=amount+(Integer.parseInt(deposit));
+//            String samount=amount+"";
+          if(deposit==""){
+               JOptionPane.showMessageDialog(null,"Please enter the amount you want to deposit ");
+          }
+          else{
+            Conn c=new Conn();
+            String query="insert into bank values('"+ pinnumber+ "' ,'"+ Sdate+ "','Deposit','"+ deposit+ "')";
+            try{
+                 c.s.executeUpdate(query);
+                 JOptionPane.showMessageDialog(null,"Your  account was credited by Rs"+deposit);
+                 setVisible(false);
+                 UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+                new Transactions(pinnumber);
+                 
+            }
+            catch(Exception ex){
+                System.out.println(ex);
+                
+            }
+          }
             
         }
         else if(ae.getSource()==back){
               setVisible(false);
-              new Transactions(pinnumber);
+              try{
+                UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+               new Transactions(pinnumber);
+              }
+              catch(Exception ex){
+                  System.out.println(ex);
+              }
                       
         }
         

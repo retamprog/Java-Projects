@@ -9,6 +9,7 @@ package bank.management.system;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Date;
 
 public class Withdrawal extends JFrame implements ActionListener{
     JButton withdraw,back;
@@ -45,10 +46,12 @@ public class Withdrawal extends JFrame implements ActionListener{
            withdraw=new JButton("Withdrawal");
            withdraw.setBounds(350,420,150,30);
            withdraw.setFont(new Font("Raleway",Font.BOLD,18));
+           withdraw.addActionListener(this);
            background.add(withdraw);
            back=new JButton("back");
            back.setBounds(350,470,150,30);
            back.setFont(new Font("Raleway",Font.BOLD,18));
+           back.addActionListener(this);
            background.add(back);
            
            setLayout(null);
@@ -73,9 +76,42 @@ public class Withdrawal extends JFrame implements ActionListener{
         
     }
     public void actionPerformed(ActionEvent ae){
-        
+        if(ae.getSource()==withdraw){
+         String withdrawn=amount.getText();
+            Date date =new Date();
+            String Sdate=date.toString();
+//            int amount=0;
+//            amount=amount-(Integer.parseInt(deposit));
+//            String samount=amount+"";
+           if(withdrawn==""){
+                 JOptionPane.showMessageDialog(null,"Please enter the amount you want withdraw");
+           }
+           else{
+            Conn c=new Conn();
+            String query="insert into bank values('"+ pinnumber+ "' ,'"+ Sdate+ "','Withdrawal','"+ withdrawn+ "')";
+            try{
+                 c.s.executeUpdate(query);
+                 JOptionPane.showMessageDialog(null,"Your  account was debited by Rs"+withdrawn);
+                 setVisible(false);
+                 new Transactions(pinnumber);
+            }
+            catch(Exception ex){
+                System.out.println(ex);
+                
+            }
+           }
         
     }
-    
-    
+        else if(ae.getSource()==back){
+               try {
+            //here you can put the selected theme class name in JTattoo
+            UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+            new Transactions(pinnumber);
+ 
+        } catch (Exception ex) {
+            System.out.println(ex);
+            
+        } 
+        }
+    }
 }
