@@ -5,7 +5,7 @@ package bank.management.system;
  *
  * @author RETAM
  * here we will create the fast cash JFrame which will give the users the real life atm sim type feeling
- * where users can directly withdraw cash in the denominations of 100,200,500,1000,2000,5000,10000
+ * where users can directly withdraw cash in the denominations of 100,500,1000,2000,5000,10000 buttons and back button
  */
 import java.awt.event.*;
 import javax.swing.*;
@@ -77,7 +77,7 @@ public class FastCash extends JFrame implements ActionListener{
            setSize(900,850);
 //           setUndecorated(true);
            setVisible(true);
-   
+          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
            setLocation(320,0);
      }
     
@@ -86,7 +86,12 @@ public class FastCash extends JFrame implements ActionListener{
             String Sdate=date.toString();
             Conn c=new Conn();
              if(ae.getSource()==R100){
-                 
+                 Balance amt=new Balance(pinnumber);
+                 int balance=amt.getBalance();
+                 if(balance<100){
+                     JOptionPane.showMessageDialog(null,"Insufficient Balance");
+                 }
+                 else{
                   String query="insert into bank values('"+ pinnumber+ "' ,'"+ Sdate+ "','Withdrawal','100')";
                   try{
                       c.s.executeUpdate(query);
@@ -98,9 +103,16 @@ public class FastCash extends JFrame implements ActionListener{
                   catch(Exception e){
                       System.out.println(e);
                   }
+                 }
                  
              }
              else if(ae.getSource()==R500){
+                 Balance amt=new Balance(pinnumber);
+                 int balance=amt.getBalance();
+                 if(balance<500){
+                     JOptionPane.showMessageDialog(null,"Insufficient Balance");
+                 }
+                 else{
                   
                   String query="insert into bank values('"+ pinnumber+ "' ,'"+ Sdate+ "','Withdrawal','500')";
                   try{
@@ -113,9 +125,16 @@ public class FastCash extends JFrame implements ActionListener{
                   catch(Exception e){
                       System.out.println(e);
                   }
+                 }
                  
              }
              else if(ae.getSource()==R1000){
+                 Balance amt=new Balance(pinnumber);
+                 int balance=amt.getBalance();
+                 if(balance<1000){
+                     JOptionPane.showMessageDialog(null,"Insufficient Balance");
+                 }
+                 else{
                    String query="insert into bank values('"+ pinnumber+ "' ,'"+ Sdate+ "','Withdrawal','1000')";
                   try{
                       c.s.executeUpdate(query);
@@ -127,8 +146,15 @@ public class FastCash extends JFrame implements ActionListener{
                   catch(Exception e){
                       System.out.println(e);
                   }
+                 }
              }
              else if(ae.getSource()==R2000){
+                 Balance amt=new Balance(pinnumber);
+                 int balance=amt.getBalance();
+                 if(balance<2000){
+                     JOptionPane.showMessageDialog(null,"Insufficient Balance");
+                 }
+                 else{
                    String query="insert into bank values('"+ pinnumber+ "' ,'"+ Sdate+ "','Withdrawal','2000')";
                   try{
                       c.s.executeUpdate(query);
@@ -140,8 +166,15 @@ public class FastCash extends JFrame implements ActionListener{
                   catch(Exception e){
                       System.out.println(e);
                   }
+                 }
              }
              else if(ae.getSource()==R5000){
+                 Balance amt=new Balance(pinnumber);
+                 int balance=amt.getBalance();
+                 if(balance<5000){
+                     JOptionPane.showMessageDialog(null,"Insufficient Balance");
+                 }
+                 else{
                    String query="insert into bank values('"+ pinnumber+ "' ,'"+ Sdate+ "','Withdrawal','5000')";
                   try{
                       c.s.executeUpdate(query);
@@ -153,8 +186,15 @@ public class FastCash extends JFrame implements ActionListener{
                   catch(Exception e){
                       System.out.println(e);
                   }
+                 }
              }
              else if(ae.getSource()==R10000){
+                 Balance amt=new Balance(pinnumber);
+                 int balance=amt.getBalance();
+                 if(balance<10000){
+                     JOptionPane.showMessageDialog(null,"Insufficient Balance");
+                 }
+                 else{
                    String query="insert into bank values('"+ pinnumber+ "' ,'"+ Sdate+ "','Withdrawal','10000')";
                   try{
                       c.s.executeUpdate(query);
@@ -166,6 +206,7 @@ public class FastCash extends JFrame implements ActionListener{
                   catch(Exception e){
                       System.out.println(e);
                   }
+                 }
              }
              else if(ae.getSource()==back){
                    try{

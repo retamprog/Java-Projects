@@ -59,6 +59,7 @@ public class Withdrawal extends JFrame implements ActionListener{
 //           setUndecorated(true);
            setVisible(true);   
            setLocation(320,0);
+           setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
            
     }
    
@@ -80,11 +81,17 @@ public class Withdrawal extends JFrame implements ActionListener{
          String withdrawn=amount.getText();
             Date date =new Date();
             String Sdate=date.toString();
+            Balance amt=new Balance(pinnumber);
+            int balance=amt.getBalance();
 //            int amount=0;
 //            amount=amount-(Integer.parseInt(deposit));
 //            String samount=amount+"";
            if(withdrawn==""){
                  JOptionPane.showMessageDialog(null,"Please enter the amount you want withdraw");
+           }
+           else if(balance<Integer.parseInt(withdrawn))
+           {
+               JOptionPane.showMessageDialog(null,"Insufficient Balance");
            }
            else{
             Conn c=new Conn();

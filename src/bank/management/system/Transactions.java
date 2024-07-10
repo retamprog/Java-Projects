@@ -83,7 +83,7 @@ public class Transactions extends JFrame implements ActionListener  {
            setSize(900,850);
            setUndecorated(true);
            setVisible(true);
-   
+          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
            setLocation(320,0);
            repaint();
            revalidate();

@@ -55,6 +55,7 @@ public class Deposit extends JFrame implements ActionListener {
 //           setUndecorated(true);
            setVisible(true);   
            setLocation(320,0);
+           setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
            
      }
      
