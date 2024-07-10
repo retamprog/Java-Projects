@@ -106,7 +106,6 @@ public class Transactions extends JFrame implements ActionListener  {
  
         } catch (Exception ex) {
             System.out.println(ex);
-            
         }   
            }
            else if(ae.getSource()==cashwithdraw){
@@ -122,10 +121,24 @@ public class Transactions extends JFrame implements ActionListener  {
                
            }
             else if(ae.getSource()==balance){
+            try {
+            //here you can put the selected theme class name in JTattoo
+            UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+            new BalanceEnquiry(pinnumber);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } 
                
            }
             else if(ae.getSource()==fastcash){
-               
+                try{
+                 UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+                 new FastCash(pinnumber);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                }
            }
             else if(ae.getSource()==ministat){
                

@@ -47,11 +47,10 @@ try{
         }
         return 0;
      }
-     public static void main(String args[]){
-         String pinnumber="4580";
-         Balance balance=new Balance(pinnumber);
-         System.out.println(balance.getBalance());
-     }
      
+     public static void main(String[] args) {
+        Balance balance=new Balance("4580");
+         System.out.println(balance.getBalance());
+    }
     
 }
