@@ -143,6 +143,14 @@ public class Transactions extends JFrame implements ActionListener  {
                 }
            }
             else if(ae.getSource()==ministat){
+                try{
+                 UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+                 new MiniStatement(pinnumber);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                }
                
            }
             else if(ae.getSource()==pinchange){

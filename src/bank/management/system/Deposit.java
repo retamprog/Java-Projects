@@ -7,6 +7,7 @@ package bank.management.system;
  * here we are going to create the deposit frame which is very similar to the Transactions frame
  * 
  */
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -52,7 +53,8 @@ public class Deposit extends JFrame implements ActionListener {
            background.add(back);
            setLayout(null);
            setSize(900,850);
-//           setUndecorated(true);
+           setUndecorated(true);
+
            setVisible(true);   
            setLocation(320,0);
            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,7 +94,7 @@ public class Deposit extends JFrame implements ActionListener {
               setVisible(false);
               try{
                 UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
-               new Transactions(pinnumber);
+               new Transactions(pinnumber).setUndecorated(true);
               }
               catch(Exception ex){
                   System.out.println(ex);
@@ -104,9 +106,15 @@ public class Deposit extends JFrame implements ActionListener {
     public static void main(String[] args) {
         
           try {
+         Properties p = new Properties();
+//         p.put("windowTitleFont", "Ebrima PLAIN 15");
+//         p.put("logoString", "");
+         p.put("windowDecoration", "off");
+        AluminiumLookAndFeel.setCurrentTheme(p);
+//UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
             //here you can put the selected theme class name in JTattoo
             UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
-            new Deposit("");
+            new Deposit("").setUndecorated(true);
  
         } catch (Exception ex) {
             System.out.println(ex);
