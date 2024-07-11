@@ -137,14 +137,29 @@ public class Login extends JFrame implements ActionListener {
         }
         else if(e.getSource()==signup){
               setVisible(false);
+              try{
+              UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
               new SignUpOne();
+              }
+              catch(Exception ex){
+                  System.out.println(ex);
+                  
+              }
         }
         
     }
     
     public static void main(String[] args) {
         // Ensuring the creation of GUI happens on the Event Dispatch Thread    
-          new Login(); // creating an anonymous Login object to call the constructor which will display the Login frame
+       try{
+           UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+          new Login();
+       }
+       catch(Exception ex)
+       {
+           System.out.println(ex);
+       }
+// creating an anonymous Login object to call the constructor which will display the Login frame
         
     }
 }

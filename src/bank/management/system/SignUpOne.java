@@ -225,6 +225,7 @@ try{
              //executing the query
              c.createStatement().executeUpdate(query);
              setVisible(false);
+             UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
              new SignUpTwo(formno);
          }
 }
@@ -236,6 +237,11 @@ try{
         
     }
     public static void main(String[] args) {
+        try{
         new SignUpOne();
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
     }
 }

@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 
 public class MiniStatement extends JFrame implements ActionListener {
     String pinnumber;
+    JButton exit;
      MiniStatement(String pinnumber){
          this.pinnumber=pinnumber;
          JLabel bank=new JLabel("Indian Bank");
@@ -49,7 +50,7 @@ public class MiniStatement extends JFrame implements ActionListener {
          //adding the JLabel mini which will display the transaction details.
          //first we will add border to check our position of the label then we will delete to set our mini JLabel
          JLabel mini=new JLabel();
-         mini.setBorder(BorderFactory.createBevelBorder(2));
+//         mini.setBorder(BorderFactory.createLineBorder(Color.black));
          mini.setVerticalAlignment(SwingConstants.TOP);
          add(mini);
          try{
@@ -62,7 +63,7 @@ public class MiniStatement extends JFrame implements ActionListener {
 //                 mini.setText(mini.getText()+"<html>"+rs.getString("date")+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+rs.getString("type_transaction")+"&nbsp;&nbsp;&nbsp;&nbsp;"+rs.getString("amount")+"</html>");
                     transactions.append(rs.getString("date")).append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
                             .append(rs.getString("type_transaction")).append("&nbsp;&nbsp;&nbsp;&nbsp;")
-                            .append(rs.getString("amount")).append("<br><br>");
+                            .append(rs.getString("amount")).append("<br><br><br>");
              }
              transactions.append("</html>");
              mini.setText(transactions.toString());
@@ -71,6 +72,11 @@ public class MiniStatement extends JFrame implements ActionListener {
              System.out.println(ex);
          }
          mini.setBounds(18,200,350,400);
+         exit=new JButton("Exit");
+         exit.setBounds(20,620,100,30);
+         exit.setFont(new Font("Raleway",Font.BOLD,16));
+         exit.addActionListener(this);
+         add(exit);
          
          setLayout(null);
          setLocation(50,50);
@@ -80,10 +86,19 @@ public class MiniStatement extends JFrame implements ActionListener {
      }
     
     public void actionPerformed(ActionEvent ae){
+          setVisible(false);
+        
          
     }
     public static void main(String[] args) {
+        try{
+        UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+               
             new MiniStatement("");
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex);
     }
-    
+    }
 }
